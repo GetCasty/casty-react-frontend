@@ -71,18 +71,10 @@
   "chokidar": "^3.5.3",
   "readdirp": "^3.6.0"
 },
-"resolutions": {
-  "braces": "^3.0.3",
-  "micromatch": "^4.0.4",
-  "anymatch": "^3.0.5",
-  "chokidar": "^3.5.3",
-  "readdirp": "^3.6.0"
-},
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js"
-	"start": "http-server ./public"
   },
   "eslintConfig": {
     "extends": [
