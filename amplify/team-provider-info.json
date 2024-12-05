@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-casty-dev-b3c20-authRole",
+      "UnauthRoleArn": "arn:aws:iam::891612582599:role/amplify-casty-dev-b3c20-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::891612582599:role/amplify-casty-dev-b3c20-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-casty-dev-b3c20-deployment",
+      "UnauthRoleName": "amplify-casty-dev-b3c20-unauthRole",
+      "StackName": "amplify-casty-dev-b3c20",
+      "StackId": "arn:aws:cloudformation:us-east-2:891612582599:stack/amplify-casty-dev-b3c20/a07fb9c0-b1ef-11ef-b3a7-0256e8ae81af",
+      "AmplifyAppId": "d3azg60e3o34xw"
+    },
+    "categories": {
+      "auth": {
+        "castyca6bd154": {}
+      }
+    }
+  }
+}

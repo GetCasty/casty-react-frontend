@@ -1,0 +1,7 @@
+version: 1
+frontend:
+  framework: react
+  config:
+    sourceDir: src
+    distributionDir: build
+# Add any other frontend config if necessary

@@ -1,0 +1,59 @@
+# Queries
+type Query {
+  getUser(id: ID!): User
+  getDJSession(id: ID!): DJSession
+  getPlaylist(id: ID!): Playlist
+  getSong(id: ID!): Song
+}
+
+# Mutations
+type Mutation {
+  createUser(username: String!, email: String!): User
+  createPlaylist(name: String!): Playlist
+  addSongToPlaylist(playlistID: ID!, title: String!, artist: String!, url: String!): Song
+  startDJSession(djName: String!, playlistID: ID!): DJSession
+  endDJSession(id: ID!): DJSession
+}
+
+# Subscriptions
+type Subscription {
+  onDJSessionLive(id: ID!): DJSession
+    @aws_subscribe(mutations: ["startDJSession", "endDJSession"])
+}
+
+# User Model with Firebase-based Authorization
+type User @model @auth(rules: [{ allow: owner, ownerField: "email", operations: [create, update, delete] }]) {
+  id: ID!
+  username: String!
+  email: String!
+}
+
+# Playlist Model with @model and @connection for songs
+type Playlist @model @auth(rules: [{ allow: owner, ownerField: "email", operations: [create, update, delete] }]) {
+  id: ID!
+  name: String!
+  createdAt: AWSDateTime!
+  songs: [Song] @connection(name: "PlaylistSongs", sortField: "createdAt")
+}
+
+# Song Model with @model and a secondary index key for playlistID
+type Song @model
+  @key(name: "byPlaylist", fields: ["playlistID"])
+  @auth(rules: [{ allow: owner, ownerField: "email", operations: [create, update, delete] }]) {
+  id: ID!
+  title: String!
+  artist: String
+  url: String!  # Link to the song file or streaming URL
+  playlistID: ID!
+}
+
+# DJSession Model with @model and @connection for the playlist relation
+type DJSession @model @auth(rules: [{ allow: owner, ownerField: "email", operations: [create, update, delete] }]) {
+  id: ID!
+  djName: String!
+  playlist: Playlist @connection(fields: ["playlistID"])
+  playlistID: ID!
+  isLive: Boolean!
+  startTime: AWSDateTime!
+  endTime: AWSDateTime
+}
