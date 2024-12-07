@@ -4,10 +4,9 @@
     "apiName": "casty",
     "serviceName": "AppSync",
     "defaultAuthType": {
-      "mode": "AMAZON_COGNITO_USER_POOLS",
-      "cognitoUserPoolId": "authcastyca6bd154"
+      "mode": "API_KEY",
+      "expirationTime": 7
     },
-    "conflictResolution": {},
     "additionalAuthTypes": []
   }
 }
