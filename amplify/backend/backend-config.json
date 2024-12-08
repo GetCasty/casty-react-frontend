@@ -6,10 +6,10 @@
         "authConfig": {
           "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
+            "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 7
-            },
-            "authenticationType": "API_KEY"
+            }
           }
         }
       },

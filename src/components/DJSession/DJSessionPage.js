@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 // Correct the imports to use the proper packages from aws-amplify
-import { Amplify } from 'aws-amplify';
+//import { Amplify } from 'aws-amplify';
+//import { API } from 'aws-amplify';
 import { API } from '@aws-amplify/api'; // Import API from the correct package
 import { graphqlOperation } from '@aws-amplify/api-graphql'; // Import graphqlOperation from the correct package
 
 // Ensure your paths to the mutations and queries are correct
 import { startDJSession, endDJSession } from '../../graphql/mutations';
-import { getDJSession } from '../../graphql/queries';
+//import { getDJSession } from '../../graphql/queries';
 
 const DJSessionPage = () => {
   const [djName, setDJName] = useState(''); // State for DJ name

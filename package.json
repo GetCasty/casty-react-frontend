@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/api": "^4.0.0",
+    "@aws-amplify/api-graphql": "^2.0.0",
     "@aws-amplify/datastore": "^5.0.64",
     "@aws-amplify/storage": "^6.7.3",
     "@aws-amplify/ui-react": "^6.7.1",
@@ -51,10 +53,11 @@
     "prompts": "^2.4.2",
     "react": "^18.3.1",
     "react-app-polyfill": "^3.0.0",
-    "react-dev-utils": "^12.0.1",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^18.3.1",
     "react-refresh": "^0.11.0",
     "react-router-dom": "^7.0.2",
+    "react-scripts": "^5.0.1",
     "resolve": "^1.20.0",
     "resolve-url-loader": "^4.0.0",
     "rimraf": "^6.0.1",
@@ -65,8 +68,7 @@
     "tailwindcss": "^3.0.2",
     "terser-webpack-plugin": "^5.2.5",
     "web-vitals": "^4.2.4",
-    "webpack": "^5.64.4",
-    "webpack-dev-server": "^4.6.0",
+    "webpack": "^5.97.1",
     "webpack-manifest-plugin": "^4.0.2",
     "workbox-webpack-plugin": "^6.4.1"
   },
@@ -162,5 +164,10 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@testing-library/jest-dom": "^6.6.3",
+    "webpack-dev-server": "^4.15.2"
   }
 }
