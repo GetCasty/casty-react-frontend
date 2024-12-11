@@ -1,25 +1,36 @@
 import React, { useState } from 'react';
-// Correct the imports to use the proper packages from aws-amplify
-//import { Amplify } from 'aws-amplify';
-//import { API } from 'aws-amplify';
-import { API } from '@aws-amplify/api'; // Import API from the correct package
-import { graphqlOperation } from '@aws-amplify/api-graphql'; // Import graphqlOperation from the correct package
-
-// Ensure your paths to the mutations and queries are correct
+// Correct AWS Amplify Imports
+import { Amplify } from 'aws-amplify';
+import { generateClient } from '@aws-amplify/api';
+import '@aws-amplify/api-graphql';
+import awsExports from '../../aws-exports';
 import { startDJSession, endDJSession } from '../../graphql/mutations';
-//import { getDJSession } from '../../graphql/queries';
+
+// Configure AWS Amplify
+Amplify.configure(awsExports);
+
+// Create a client for API requests
+const client = generateClient();
 
 const DJSessionPage = () => {
-  const [djName, setDJName] = useState(''); // State for DJ name
-  const [playlistID, setPlaylistID] = useState(''); // State for Playlist ID
-  const [session, setSession] = useState(null); // State for active session
+  const [djName, setDJName] = useState(''); 
+  const [playlistID, setPlaylistID] = useState(''); 
+  const [session, setSession] = useState(null); 
 
+  // Start DJ Session
   const handleStartSession = async () => {
     try {
-      const newSession = await API.graphql(
-        graphqlOperation(startDJSession, { djName, playlistID })
-      );
-      setSession(newSession.data.startDJSession); // Set the session data
+      console.log("Starting session with:", { djName, playlistID });
+
+      const response = await client.graphql({
+        query: startDJSession,
+        variables: { djName, playlistID },
+      });
+
+      const newSession = response.data.startDJSession;
+      console.log("Session started:", newSession);
+
+      setSession(newSession); 
       alert('DJ session started!');
     } catch (error) {
       console.error('Error starting session:', error);
@@ -27,14 +38,20 @@ const DJSessionPage = () => {
     }
   };
 
+  // End DJ Session
   const handleEndSession = async () => {
     if (!session) {
       alert('No active session to end.');
       return;
     }
+
     try {
-      await API.graphql(graphqlOperation(endDJSession, { id: session.id }));
-      setSession(null); // Clear session after ending
+      await client.graphql({
+        query: endDJSession,
+        variables: { id: session.id },
+      });
+
+      setSession(null); 
       alert('DJ session ended.');
     } catch (error) {
       console.error('Error ending session:', error);

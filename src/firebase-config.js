@@ -1,7 +1,8 @@
 // src/firebase-config.js
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyD9FyRwbhEiuX1gjTiv9RLN-PiPauhebrw",
   authDomain: "casty-b1f93.firebaseapp.com",
@@ -11,11 +12,10 @@ const firebaseConfig = {
   appId: "1:729127708184:web:04904569ff4b10aa1c456d"
 };
 
-// Initialize Firebase
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-} else {
-  firebase.app(); // if already initialized
-}
+// Initialize Firebase App
+const firebaseApp = initializeApp(firebaseConfig);
 
-export default firebase;
+// Get the authentication instance
+const firebaseAuth = getAuth(firebaseApp);
+
+export { firebaseApp, firebaseAuth };

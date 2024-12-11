@@ -11,9 +11,8 @@ export const startDJSession = /* GraphQL */ `
 export const endDJSession = /* GraphQL */ `
   mutation EndDJSession($id: ID!) {
     endDJSession(id: $id) {
-      id
-      djName
-      playlistID
+      success
+      message
     }
   }
 `;
